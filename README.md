@@ -28,7 +28,6 @@ COURSE Algebra/
     │   ├── *.pdf  
     │   ├── *.txt  
     │   ├── *.c
-    │   ├── *_mapping.json
     │   └── *.srt  
     ├── week 1/  
     │   ├── *.pdf  
