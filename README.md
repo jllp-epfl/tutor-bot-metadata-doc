@@ -17,6 +17,8 @@ This repository contains several JSON datasets, each documented in its own folde
 
 
 
+
+```
 COURSE Algebra/  
 ├── metadata/  
 │   ├── algebra_metadata_main_1.json  
@@ -32,9 +34,10 @@ COURSE Algebra/
     ├── week 1/  
     │   ├── *.pdf  
     │   ├── *.txt  
+    │   ├── *_mapping.json    
     │   └── *.srt  
     └── week 2/  
         ├── *.pdf  
         └── *.txt  
-
+```
 
