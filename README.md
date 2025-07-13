@@ -16,12 +16,14 @@ This repository contains several JSON datasets, each documented in its own folde
 | [doc-inter-gemini-video](./doc-inter-gemini-video)      |  Example of gemini-based video preprocessing JSON file.  |
 
 
-
+# RAG Course Folder Structure
 
 ```
 COURSE Algebra/  
 ├── metadata/  
-│   ├── algebra_metadata_main_1.json  
+│   ├── algebra_metadata_general.json  
+│   ├── algebra_metadata_week_1.json  
+│   ├── algebra_metadata_week_2.json  
 │   ├── algebra_metadata_qa_2024_theory_1.json  
 │   ├── algebra_metadata_qa_2024_practice_1.json  
 │   └── algebra_metadata_qa_2024_exam_1.json  
@@ -41,3 +43,7 @@ COURSE Algebra/
         └── *.txt  
 ```
 
+
+## Notes
+- All JSON files in the metadata folder have the same structure
+- Every metadata JSON file in the metadata folder, the IDs start by number 1

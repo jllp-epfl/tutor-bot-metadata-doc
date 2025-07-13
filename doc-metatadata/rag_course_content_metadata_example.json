@@ -29,6 +29,7 @@
       "processing_method": "gemini",
       "model": "gemini-2.5-flash-preview-04-17",
       "one_chunk_per_page": true,
+      "one_chunk_per_doc": false,
       "associated_video_lectures": [
 	      {
 	      "title": "Components of a Mobile Robot Part 1",
@@ -70,6 +71,7 @@
       "processing_method": "tesseract",
       "model": null,
       "one_chunk_per_page": false,
+      "one_chunk_per_doc": false,
       "associated_video_lectures": null
     },
     {
@@ -94,6 +96,7 @@
       "processing_method": "tesseract",
       "model": null,
       "one_chunk_per_page": false,
+      "one_chunk_per_doc": false,
       "associated_video_lectures": null
     },
     {
@@ -116,6 +119,7 @@
       "processing_method": "gemini",
       "model": "gemini-2.5-flash-preview-04-17",
       "one_chunk_per_page": false,
+      "one_chunk_per_doc": false,
       "associated_video_lectures": null
     },
     {
@@ -138,6 +142,7 @@
       "processing_method": "tesseract",
       "model": null,	  
       "one_chunk_per_page": false,
+      "one_chunk_per_doc": false,
       "associated_video_lectures": null
     },
     {
@@ -161,6 +166,7 @@
       "processing_method": "gemini",
       "model": "gemini-2.5-flash-preview-04-17",
       "one_chunk_per_page": true,
+      "one_chunk_per_doc": false,
       "associated_video_lectures": null
     },
     {
@@ -184,6 +190,7 @@
       "processing_method": "gemini",
       "model": "gemini-2.5-flash-preview-04-17",
       "one_chunk_per_page": true,
+      "one_chunk_per_doc": false,
       "associated_video_lectures": null      
     },
     {
@@ -207,6 +214,7 @@
       "processing_method": "gemini",
       "model": "gemini-2.5-flash-preview-04-17",      
       "one_chunk_per_page": true,
+      "one_chunk_per_doc": false,
       "associated_video_lectures": null
     },
     {
@@ -227,9 +235,10 @@
       "original_link": "www.epfl.....",  
       "pipeline_link": "www.sharepoint.....",        
       "srt_path": null,                                    
-      "processing_method": "gemini",
-      "model": "gemini-2.5-flash-preview-04-17",      
+      "processing_method": "google",
+      "model": null,      
       "one_chunk_per_page": true,
+      "one_chunk_per_doc": false,
       "associated_video_lectures": null
     },
     {
@@ -253,6 +262,7 @@
       "processing_method": "gemini",
       "model": "gemini-2.5-flash-preview-04-17",      
       "one_chunk_per_page": true,
+      "one_chunk_per_doc": false,
       "associated_video_lectures": null
     },
     {
@@ -276,6 +286,7 @@
       "processing_method": "gemini",
       "model": "gemini-2.5-flash-preview-04-17",      
       "one_chunk_per_page": true,
+      "one_chunk_per_doc": false,
       "associated_video_lectures": null
     },
 	{
@@ -298,6 +309,7 @@
       "processing_method": "gemini",
       "model": "gemini-2.5-flash-preview-04-17",      
       "one_chunk_per_page": true,
+      "one_chunk_per_doc": false,
       "associated_video_lectures": null
     },
     {
@@ -320,6 +332,7 @@
       "processing_method": "gemini",
       "model": "gemini-2.5-flash-preview-04-17",      
       "one_chunk_per_page": false,
+      "one_chunk_per_doc": false,
       "associated_video_lectures": null
     },
     {
@@ -342,6 +355,7 @@
       "processing_method": "tesseract",
       "model": null,
       "one_chunk_per_page": false,
+      "one_chunk_per_doc": false,
       "associated_video_lectures": null
     },
     {
@@ -365,6 +379,7 @@
       "processing_method": "gemini",
       "model": "gemini-2.5-flash-preview-04-17",
       "one_chunk_per_page": true,
+      "one_chunk_per_doc": false,
       "associated_video_lectures": null
     },
     { 
@@ -388,6 +403,7 @@
       "processing_method": "gemini",
       "model": "gemini-2.5-flash-preview-04-17",
       "one_chunk_per_page": false,
+      "one_chunk_per_doc": false,
       "associated_video_lectures": null
     },
     { 
@@ -411,6 +427,7 @@
       "processing_method": "tesseract",
       "model": null,
       "one_chunk_per_page": false,
+      "one_chunk_per_doc": false,
       "associated_video_lectures": null
     }             
   ]
