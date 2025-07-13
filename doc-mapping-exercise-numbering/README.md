@@ -34,7 +34,7 @@ The mapping uses string keys for maximum flexibility:
 
 ## File Naming Convention
 
-Use the format `{source_year}_to_{target_year}.json`:
-- `2024_to_2023.json`
-- `2024_to_2022.json`
+Use the format `cousecode_{source_year}_to_{target_year}.json`:
+- `2022_to_2024.json`
+- `2023_to_2024.json`
 
