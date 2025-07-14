@@ -35,8 +35,8 @@ For a complete example with sample data, see: (./rag_course_content_metadata_exa
 | `week` | integer | No | Course week number when document is relevant |
 | `from` | string | Yes | Start date of document availability in DD/MM/YYYY format (inclusive) |
 | `until` | string | Yes | End date of document availability in DD/MM/YYYY format (exclusive) |
-| `number` | integer | No | Used for practice documents: the number of the exercise, or if it's part of a series it will be the number of the series |
-| `sub_number` | integer | No | Used for practice documents: the number of the exercise only if it's part of a series |
+| `number` | string | No | Used for practice documents: the number of the exercise, or if it's part of a series it will be the number of the series. |
+| `sub_number` | string | No | Used for practice documents: the number of the exercise only if it's part of a series. When the series has parts e.g. Series 1, Part 2, Exercise 5, then sub_number will be "2.5" |
 | `path` | string | No | File path for the document from the root folder  |
 | `original_link` | string | No | URL to the original source of the document |
 | `pipeline_link` | string | No | URL to processed version in the pipeline system |
