@@ -33,12 +33,12 @@ COURSE Algebra/
     │   ├── *.txt  
     │   ├── *.c
     │   └── *.srt  
-    ├── week 1/  
+    ├── week_1/  
     │   ├── *.pdf  
     │   ├── *.txt  
     │   ├── *_mapping.json    
     │   └── *.srt  
-    └── week 2/  
+    └── week_2/  
         ├── *.pdf  
         └── *.txt  
 ```
