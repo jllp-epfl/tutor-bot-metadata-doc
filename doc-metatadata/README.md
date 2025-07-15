@@ -43,6 +43,7 @@ For a complete example with sample data, see: (./rag_course_content_metadata_exa
 | `srt_path` | string | No | File path to subtitle file (for video content) |
 | `processing_method` | string | Yes | Method used to process the document. Values: `gemini`, `google`, `tesseract` |
 | `model` | string | No | Specific Gemini model used for processing. Values: `gemini-2.5-pro`, `gemini-2.5-flash`, `gemini-2.0-flash`  |
+| `tikz` | boolean | No | Diagrams generated with TikZ? `null` by default . Values: `true`, `false`, `null`  |
 | `one_chunk_per_page` | boolean | Yes | Whether the page is processed as one chunk |
 | `one_chunk_per_doc` | boolean | Yes | Whether the full document is processed as one chunk |
 | `associated_video_lectures` | array/null | No | Array of related video lectures. See [Video Lecture Object](#video-lecture-object) |
