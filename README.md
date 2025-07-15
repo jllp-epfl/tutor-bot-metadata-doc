@@ -31,12 +31,12 @@ COURSE math_101_e
     ├── general/  
     │   ├── *.pdf  
     │   ├── *.txt  
+    │   ├── *_mapping.json    
     │   ├── *.c
     │   └── *.srt  
     ├── week_1/  
     │   ├── *.pdf  
     │   ├── *.txt  
-    │   ├── *_mapping.json    
     │   └── *.srt  
     └── week_2/  
         ├── *.pdf  

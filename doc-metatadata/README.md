@@ -35,11 +35,11 @@ For a complete example with sample data, see: (./rag_course_content_metadata_exa
 | `week` | integer | No | Course week number when document is relevant |
 | `from` | string | Yes | Start date of document availability in DD/MM/YYYY format (inclusive) |
 | `until` | string | Yes | End date of document availability in DD/MM/YYYY format (exclusive) |
-| `number` | string | No | Used for practice documents: the number of the exercise, or if it's part of a series it will be the number of the series. |
-| `sub_number` | string | No | Used for practice documents: the number of the exercise only if it's part of a series. When the series has parts e.g. Series 1, Part 2, Exercise 5, then sub_number will be "2.5" |
-| `path` | string | No | File path for the document from the root folder  |
+| `number` | string | No | Used for practice documents: the number of the exercise. If it's part of a series it will be the number of the series. If it's an exam, it will be the year of the exam |
+| `sub_number` | string | No | Used for practice documents: the number of the exercise only if it's part of a series. When the series has parts e.g. Series 1, Part 2, Exercise 5, then sub_number will be "2.5". If it's an exam, it will be the number of the exercise in the exam. |
+| `path` | string | No | File path for the document from the root folder.  For example, for a file called 'series_2_ex_2.pdf' that it's within 'week_2', path will be `content/week_2/series_2_ex_2.pdf` |
 | `original_link` | string | No | URL to the original source of the document |
-| `pipeline_link` | string | No | URL to processed version in the pipeline system |
+| `pipeline_link` | string | No | URL to processed version in the pipeline system. We leave it to `null` |
 | `srt_path` | string | No | File path to subtitle file (for video content) |
 | `processing_method` | string | Yes | Method used to process the document. Values: `gemini`, `google`, `tesseract` |
 | `model` | string | No | Specific Gemini model used for processing. Values: `gemini-2.5-pro`, `gemini-2.5-flash`, `gemini-2.0-flash`  |
