@@ -19,14 +19,14 @@ This repository contains several JSON datasets, each documented in its own folde
 # RAG Course Folder Structure
 
 ```
-COURSE Algebra/  
+COURSE math_101_e  
 ├── metadata/  
-│   ├── algebra_metadata_general.json  
-│   ├── algebra_metadata_week_1.json  
-│   ├── algebra_metadata_week_2.json  
-│   ├── algebra_metadata_qa_2024_theory_1.json  
-│   ├── algebra_metadata_qa_2024_practice_1.json  
-│   └── algebra_metadata_qa_2024_exam_1.json  
+│   ├── math_101_e_metadata_general.json  
+│   ├── math_101_e_metadata_week_1.json  
+│   ├── math_101_e_metadata_week_2.json  
+│   ├── math_101_e_metadata_qa_2024_theory_1.json  
+│   ├── math_101_e_metadata_qa_2024_practice_1.json  
+│   └── math_101_e_metadata_qa_2024_exam_1.json  
 └── content/  
     ├── general/  
     │   ├── *.pdf  
