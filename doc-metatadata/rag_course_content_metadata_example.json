@@ -53,7 +53,7 @@
     {
       "id": 2,
       "type": "practice",
-      "subtype": "labs",
+      "subtype": "lab",
       "is_solution": false,
       "is_qa": false,
       "is_video": true,            
