@@ -55,7 +55,7 @@ For a complete example with sample data, see: (./rag_course_content_metadata_exa
 | `title` | string | Yes | Title of the video lecture |
 | `is_gemini_processed_video` | boolean | Yes | Whether this video has been processed by a Gemini model |
 | `original_link` | string | Yes | public URL of the video (on mediaspace) |
-| `pipeline_link` | string | No | Set to `null` if `is_gemini_processed_video` is `false`. If it's `true` root file path to Gemini video processing JSON file   |
+| `path` | string | No | Set to `null` if `is_gemini_processed_video` is `false`. If it's `true` root file path to Gemini video processing JSON file   |
 | `srt_path` | string | No | File path from root to the subtitle file. Set to `null` in case there is no subtitle |
 | `pdf_page_video_ts_path` | string | No | File path from root to the PDF-video timestamp mapping file |
 
@@ -115,7 +115,7 @@ Each document type has specific allowed subtypes:
 - All dates must be in DD/MM/YYYY format
 - Document IDs must be unique but there will be skipped by Elastic Search
 - Video documents should have `is_video` set to `true`
-- If `is_solution` is `true`, the document contains the solution of the exercise or exam 
+- If `is_solution` is `true`, the document contains the solution of the exercise or exam
 - If `associated_video_lectures` is present, it should be an array (it can be empty)
 - Processing method is required for all documents
 - Model field should be populated when processing_method is `gemini`
