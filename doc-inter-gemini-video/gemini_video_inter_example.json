@@ -1,65 +1,105 @@
 {
-  "language": "fr",
-  "general_description_en": "This video, part 2 on polar coordinates, explains their application to describe uniform circular motion. It details how the radial coordinate (rho) remains constant (equal to the radius R) and the angular coordinate (phi) changes linearly with time (phi = omega * t). The lecture then derives the expressions for the position, velocity, and acceleration vectors in polar coordinates for this specific motion. It shows that the velocity is tangential (R * omega * e_phi) and the acceleration is centripetal (-R * omega^2 * e_rho), also expressed as v^2/R. Finally, it relates the angular frequency (omega) to the frequency (f) by omega = 2*pi*f.",
-  "general_description_fr": "Cette vidéo, deuxième partie sur les coordonnées polaires, explique leur application pour décrire le mouvement circulaire uniforme. Elle détaille comment la coordonnée radiale (rho) reste constante (égale au rayon R) et la coordonnée angulaire (phi) varie linéairement avec le temps (phi = omega * t). Le cours dérive ensuite les expressions des vecteurs position, vitesse et accélération en coordonnées polaires pour ce mouvement spécifique. Il montre que la vitesse est tangentielle (R * omega * e_phi) et l'accélération est centripète (-R * omega^2 * e_rho), également exprimée par v^2/R. Finalement, il relie la pulsation (omega) à la fréquence (f) par omega = 2*pi*f.",
-  "video_keywords_en": ["Polar Coordinates", "Uniform Circular Motion", "Kinematics", "Velocity Vector", "Acceleration Vector", "Centripetal Acceleration", "Angular Velocity", "Radial Coordinate", "Angular Coordinate", "Frequency"],
-  "video_keywords_fr": ["Coordonnées Polaires", "Mouvement Circulaire Uniforme", "Cinématique", "Vecteur Vitesse", "Vecteur Accélération", "Accélération Centripète", "Vitesse Angulaire", "Coordonnée Radiale", "Coordonnée Angulaire", "Fréquence"],
-  "usage_metadata": {
-    "cache_tokens_details": null,
-    "cached_content_token_count": null,
-    "candidates_token_count": 10480,
-    "candidates_tokens_details": null,
-    "prompt_token_count": 372434,
-    "prompt_tokens_details": [
+   "language":"fr",
+   "general_description_en":"This video, part 2 on polar coordinates, explains their application to describe uniform circular motion. It details how the radial coordinate (rho) remains constant (equal to the radius R) and the angular coordinate (phi) changes linearly with time (phi = omega * t). The lecture then derives the expressions for the position, velocity, and acceleration vectors in polar coordinates for this specific motion. It shows that the velocity is tangential (R * omega * e_phi) and the acceleration is centripetal (-R * omega^2 * e_rho), also expressed as v^2/R. Finally, it relates the angular frequency (omega) to the frequency (f) by omega = 2*pi*f.",
+   "general_description_fr":"Cette vidéo, deuxième partie sur les coordonnées polaires, explique leur application pour décrire le mouvement circulaire uniforme. Elle détaille comment la coordonnée radiale (rho) reste constante (égale au rayon R) et la coordonnée angulaire (phi) varie linéairement avec le temps (phi = omega * t). Le cours dérive ensuite les expressions des vecteurs position, vitesse et accélération en coordonnées polaires pour ce mouvement spécifique. Il montre que la vitesse est tangentielle (R * omega * e_phi) et l'accélération est centripète (-R * omega^2 * e_rho), également exprimée par v^2/R. Finalement, il relie la pulsation (omega) à la fréquence (f) par omega = 2*pi*f.",
+   "video_keywords_en":[
+      "Polar Coordinates",
+      "Uniform Circular Motion",
+      "Kinematics",
+      "Velocity Vector",
+      "Acceleration Vector",
+      "Centripetal Acceleration",
+      "Angular Velocity",
+      "Radial Coordinate",
+      "Angular Coordinate",
+      "Frequency"
+   ],
+   "video_keywords_fr":[
+      "Coordonnées Polaires",
+      "Mouvement Circulaire Uniforme",
+      "Cinématique",
+      "Vecteur Vitesse",
+      "Vecteur Accélération",
+      "Accélération Centripète",
+      "Vitesse Angulaire",
+      "Coordonnée Radiale",
+      "Coordonnée Angulaire",
+      "Fréquence"
+   ],
+   "usage_metadata":{
+      "cache_tokens_details":null,
+      "cached_content_token_count":null,
+      "candidates_token_count":10480,
+      "candidates_tokens_details":null,
+      "prompt_token_count":372434,
+      "prompt_tokens_details":[
+         {
+            "modality":"TEXT",
+            "token_count":1324
+         },
+         {
+            "modality":"VIDEO",
+            "token_count":330854
+         },
+         {
+            "modality":"AUDIO",
+            "token_count":40256
+         }
+      ],
+      "thoughts_token_count":4803,
+      "tool_use_prompt_token_count":null,
+      "tool_use_prompt_tokens_details":null,
+      "total_token_count":387717,
+      "traffic_type":null
+   },
+   "video_segments":[
       {
-        "modality": "TEXT",
-        "token_count": 1324
+         "start_time":"00:00:00,000",
+         "end_time":"00:00:04,800",
+         "key_frame_time":"00:00:00,750",
+         "contains_math":false,
+         "contains_diagram":false,
+         "teacher_uses_pointer":false,
+         "segment_audio_transcription_en":"",
+         "segment_audio_transcription_fr":"",
+         "extracted_text_video_frame":"I - Cinématique\nCoordonnées polaires\nPartie 2\nProf. Cécile Hébert",
+         "short_description_video_segment_en":"Title slide for 'Polar Coordinates Part 2', part of the Kinematics section.",
+         "short_description_video_segment_fr":"Diapositive de titre pour 'Coordonnées polaires Partie 2', section de Cinématique.",
+         "segment_keywords_en":[
+            "Title",
+            "Polar Coordinates",
+            "Kinematics"
+         ],
+         "segment_keywords_fr":[
+            "Titre",
+            "Coordonnées polaires",
+            "Cinématique"
+         ]
       },
       {
-        "modality": "VIDEO",
-        "token_count": 330854
-      },
-      {
-        "modality": "AUDIO",
-        "token_count": 40256
+         "start_time":"00:00:04,800",
+         "end_time":"00:00:18,800",
+         "key_frame_time":"00:00:05,150",
+         "contains_math":false,
+         "contains_diagram":false,
+         "teacher_uses_pointer":false,
+         "segment_audio_transcription_en":"The polar coordinate system might seem much more complex than Cartesian coordinates. We will see an example, that of uniform circular motion, where these coordinates will be very effective.",
+         "segment_audio_transcription_fr":"Le système de coordonnées polaires pourrait sembler beaucoup plus complexe que les coordonnées cartésiennes. Nous allons voir un exemple, celui du mouvement circulaire uniforme où ces coordonnées seront très efficaces.",
+         "extracted_text_video_frame":"\\documentclass{article}\n\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n\\usepackage{graphicx}\n\\usepackage{xcolor}\n\\begin{document}\n\n$m \\vec{a}_{R'}(P) = \\sum \\vec{F}_{ext} - m \\vec{a}_R(A) - m \\vec{\\omega} \\wedge (\\vec{\\omega} \\wedge \\vec{AP}) - 2m \\vec{\\omega} \\wedge \\vec{v}_{R'}(P)$\n\nUne accolade bleue horizontale est dessinée au-dessus de l'équation, du terme $- m \\vec{a}_R(A)$ au terme $- 2m \\vec{\\omega} \\wedge \\vec{v}_{R'}(P)$. Le texte 'dimension d'une force' est écrit au-dessus de l'accolade.\nUne accolade rouge est dessinée autour de tous les termes à droite du signe égal, à l'exception de $\\sum \\vec{F}_{ext}$.\nUne accolade verte est dessinée sous le terme $- 2m \\vec{\\omega} \\wedge \\vec{v}_{R'}(P)$, avec le texte 'Force de Coriolis' écrit en dessous.\nUne accolade orange est dessinée sous les termes $- m \\vec{a}_R(A) - m \\vec{\\omega} \\wedge (\\vec{\\omega} \\wedge \\vec{AP})$.\nLe texte 'forces d'inertie' est écrit à droite, pointant vers l'accolade rouge.\nLe texte '“Forces d’entraînement”' est écrit en dessous, pointant vers l'accolade orange.\n\n\\end{document}",
+         "short_description_video_segment_en":"The teacher introduces polar coordinates, suggesting they can be more effective than Cartesian coordinates for certain problems, like uniform circular motion.",
+         "short_description_video_segment_fr":"L'enseignante introduit les coordonnées polaires, suggérant qu'elles peuvent être plus efficaces que les coordonnées cartésiennes pour certains problèmes, comme le mouvement circulaire uniforme.",
+         "segment_keywords_en":[
+            "Introduction",
+            "Polar Coordinates",
+            "Cartesian Coordinates",
+            "Uniform Circular Motion"
+         ],
+         "segment_keywords_fr":[
+            "Introduction",
+            "Coordonnées polaires",
+            "Coordonnées cartésiennes",
+            "Mouvement circulaire uniforme"
+         ]
       }
-    ],
-    "thoughts_token_count": 4803,
-    "tool_use_prompt_token_count": null,
-    "tool_use_prompt_tokens_details": null,
-    "total_token_count": 387717,
-    "traffic_type": null
-  },  
-  "video_segments": [
-    {
-      "start_time": "00:00:00,000",
-      "end_time": "00:00:04,800",
-      "key_frame_time": "00:00:00,750",
-      "contains_math": false,
-      "contains_diagram": false,
-      "teacher_uses_pointer": false,
-      "segment_audio_transcription_en": "",
-      "segment_audio_transcription_fr": "",
-      "extracted_text_video_frame": "I - Cinématique\nCoordonnées polaires\nPartie 2\nProf. Cécile Hébert",
-      "short_description_video_segment_en": "Title slide for 'Polar Coordinates Part 2', part of the Kinematics section.",
-      "short_description_video_segment_fr": "Diapositive de titre pour 'Coordonnées polaires Partie 2', section de Cinématique.",
-      "segment_keywords_en": ["Title", "Polar Coordinates", "Kinematics"],
-      "segment_keywords_fr": ["Titre", "Coordonnées polaires", "Cinématique"]
-    },
-    {
-      "start_time": "00:00:04,800",
-      "end_time": "00:00:18,800",
-      "key_frame_time": "00:00:05,150",
-      "contains_math": false,
-      "contains_diagram": false,
-      "teacher_uses_pointer": false,
-      "segment_audio_transcription_en": "The polar coordinate system might seem much more complex than Cartesian coordinates. We will see an example, that of uniform circular motion, where these coordinates will be very effective.",
-      "segment_audio_transcription_fr": "Le système de coordonnées polaires pourrait sembler beaucoup plus complexe que les coordonnées cartésiennes. Nous allons voir un exemple, celui du mouvement circulaire uniforme où ces coordonnées seront très efficaces.",
-      "extracted_text_video_frame": "\\documentclass{article}\n\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n\\usepackage{graphicx}\n\\usepackage{xcolor}\n\\begin{document}\n\n$m \\vec{a}_{R'}(P) = \\sum \\vec{F}_{ext} - m \\vec{a}_R(A) - m \\vec{\\omega} \\wedge (\\vec{\\omega} \\wedge \\vec{AP}) - 2m \\vec{\\omega} \\wedge \\vec{v}_{R'}(P)$\n\nUne accolade bleue horizontale est dessinée au-dessus de l'équation, du terme $- m \\vec{a}_R(A)$ au terme $- 2m \\vec{\\omega} \\wedge \\vec{v}_{R'}(P)$. Le texte 'dimension d'une force' est écrit au-dessus de l'accolade.\nUne accolade rouge est dessinée autour de tous les termes à droite du signe égal, à l'exception de $\\sum \\vec{F}_{ext}$.\nUne accolade verte est dessinée sous le terme $- 2m \\vec{\\omega} \\wedge \\vec{v}_{R'}(P)$, avec le texte 'Force de Coriolis' écrit en dessous.\nUne accolade orange est dessinée sous les termes $- m \\vec{a}_R(A) - m \\vec{\\omega} \\wedge (\\vec{\\omega} \\wedge \\vec{AP})$.\nLe texte 'forces d'inertie' est écrit à droite, pointant vers l'accolade rouge.\nLe texte '“Forces d’entraînement”' est écrit en dessous, pointant vers l'accolade orange.\n\n\\end{document}",      
-      "short_description_video_segment_en": "The teacher introduces polar coordinates, suggesting they can be more effective than Cartesian coordinates for certain problems, like uniform circular motion.",
-      "short_description_video_segment_fr": "L'enseignante introduit les coordonnées polaires, suggérant qu'elles peuvent être plus efficaces que les coordonnées cartésiennes pour certains problèmes, comme le mouvement circulaire uniforme.",
-      "segment_keywords_en": ["Introduction", "Polar Coordinates", "Cartesian Coordinates", "Uniform Circular Motion"],
-      "segment_keywords_fr": ["Introduction", "Coordonnées polaires", "Coordonnées cartésiennes", "Mouvement circulaire uniforme"]
-    }
-  ]
+   ]
 }
