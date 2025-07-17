@@ -72,7 +72,7 @@ For a complete example with sample data, see: (./rag_course_content_metadata_exa
 Each document type has specific allowed subtypes:
   - `theory`: lecture_slides, video_lecture, book_in_bibliography, lecture_notes, booc
   - `practice`: exercise, case_study, project, series, labs
-  - `exam`: midterm_exam, mockup_exam, previous_year_exam
+  - `exam`: midterm_exam, mock_exam, previous_year_exam
   - `other`: No subtypes defined yet (should be null)
 
 #### Theory Subtype Descriptions
@@ -91,7 +91,7 @@ Each document type has specific allowed subtypes:
 
 #### Exam Subtype Descriptions
 - `midterm_exam`: Mid-semester exams
-- `mockup_exam`: Practice/mock exams
+- `mock_exam`: Practice/mock exams
 - `previous_year_exam`: Exams from previous years
 
 
