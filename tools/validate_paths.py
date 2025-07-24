@@ -82,16 +82,11 @@ def main():
     parser = argparse.ArgumentParser(
         description="Validate file paths in JSON metadata files",
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Example usage:
-  python validate_paths.py ./my_course_folder
-  python validate_paths.py /path/to/root/folder
-        """,
     )
     parser.add_argument(
         "root_folder",
         type=str,
-        help="Path to the root folder containing metadata and content directories",
+        help="Path to the root folder of the RAG course, containing metadata and content directories",
     )
     args = parser.parse_args()
 
