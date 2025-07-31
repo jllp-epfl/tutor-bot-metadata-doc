@@ -20,9 +20,9 @@
          "week":1,
          "from":"09/09/2025",
          "until":"21/12/2025",
-         "number":1,
+         "number":"1",
          "sub_number":null,
-         "path":"content/week_1/Slides 01 - Components of a Mobile Robot.pdf",
+         "path":"content/week_1/slides_01_components_of_a_mobile_robot.pdf",
          "original_link":"www.epfl.....",
          "pipeline_link":null,
          "srt_path":null,
@@ -38,15 +38,15 @@
                "original_link":"https://www.mediaspace.ai/a_sfwa42",
                "path":null,
                "srt_path":"content/week_1/0_um92jkxl.srt",
-               "pdf_page_video_ts_path":"week_1/0_um92jkxl_pdf_video_1.json"
+               "pdf_page_video_ts_path":"week_1/slides_01_components_of_a_mobile_robot_page_to_timestamp_1.json"
             },
             {
                "title":"Components of a Mobile Robot Part 2",
-               "is_gemini_processed_video":true,
+               "is_gemini_processed_video":false,
                "original_link":"https://www.mediaspace.ai/a_sfwa43",
-               "path":"content/week_1/0_um92jkxlsi1_gemini.json",
+               "path":null,
                "srt_path":"content/week_1/0_um92jkxlsi1.srt",
-               "pdf_page_video_ts_path":"week_1/0_um92jkxl_pdf_video_2.json"
+               "pdf_page_video_ts_path":"week_1/slides_01_components_of_a_mobile_robot_page_to_timestamp_2.json"
             }
          ]
       },
@@ -93,7 +93,7 @@
          "path":"content/week_1/v_a3d03d_gemini.json",
          "original_link":"https://www.mediaspace.ai/v_a3d03d",
          "pipeline_link":null,
-         "srt_path":"content/week_1/v_a3d03d.srt",
+         "srt_path":null,
          "pdf_page_video_ts_path":null,
          "processing_method":"tesseract",
          "model":null,
@@ -285,13 +285,13 @@
          "is_qa":false,
          "is_video":false,
          "is_gemini_processed_video":false,
-         "title":"series 1 solution.pdf",
+         "title":"series 1 Ex 4 solution.pdf",
          "week":2,
          "from":"09/09/2025",
          "until":"21/12/2025",
          "number":"1",
-         "sub_number":null,
-         "path":"content/week_2/series 1 solution.pdf",
+         "sub_number":"4",
+         "path":"content/week_2/series 1 Ex 4 solution.pdf",
          "original_link":"www.epfl.....",
          "pipeline_link":null,
          "srt_path":null,
@@ -329,7 +329,7 @@
       {
          "id":13,
          "type":"theory",
-         "subtype":"book_from_bibliography",
+         "subtype":"book_in_bibliography",
          "is_solution":false,
          "is_qa":false,
          "is_video":false,
