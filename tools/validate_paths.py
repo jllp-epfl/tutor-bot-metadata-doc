@@ -6,6 +6,23 @@ from typing import Dict, List, Tuple, Any
 import os
 
 
+def list_non_hidden_files(root_folder: Path) -> List[str]:
+    """
+    Recursively list all non-hidden files under root_folder,
+    returning their paths relative to root_folder as strings.
+    """
+    all_files = []
+    for path in root_folder.rglob("*"):
+        if path.is_file():
+            # skip hidden files or those in hidden dirs
+            rel_parts = path.relative_to(root_folder).parts
+            if any(part.startswith(".") for part in rel_parts):
+                continue
+            all_files.append(str(path.relative_to(root_folder)))
+
+    return all_files
+
+
 def extract_paths_from_document(doc: Dict[str, Any]) -> List[Tuple[str, str, int]]:
     """
     Extract all path attributes from a document.
@@ -72,9 +89,10 @@ def validate_json_file(
 
     except json.JSONDecodeError as e:
         print(f"Error: Invalid JSON in file {json_file}: {e}")
+        sys.exit(1)
     except Exception as e:
         print(f"Error processing file {json_file}: {e}")
-
+        sys.exit(1)
     return valid_paths, invalid_paths
 
 
@@ -99,15 +117,35 @@ def main():
     total_valid_paths = 0
     total_invalid_paths = 0
     all_invalid_paths = []
+    referenced_paths = set()
+    types_set = set()
+    subtypes_set = set()
+    models_set = set()
+    processing_methods_set = set()
 
     metadata_dir = root_folder / "metadata"
 
-    # for json_file in json_files:
     for json_file in os.listdir(metadata_dir):
         if not json_file.endswith(".json"):
             continue
 
         json_file_path = metadata_dir / json_file
+
+        try:
+            with open(json_file_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception:
+            pass
+        else:
+            for doc in data.get("documents", []):
+                if doc.get("type") is not None:
+                    types_set.add(doc["type"])
+                if doc.get("subtype") is not None:
+                    subtypes_set.add(doc["subtype"])
+                if doc.get("model") is not None:
+                    models_set.add(doc["model"])
+                if doc.get("processing_method") is not None:
+                    processing_methods_set.add(doc["processing_method"])
 
         print(f"Validating: {json_file_path}")
         valid_paths, invalid_paths = validate_json_file(json_file_path, root_folder)
@@ -117,6 +155,10 @@ def main():
 
         for attr_name, path_value, doc_id in invalid_paths:
             all_invalid_paths.append((json_file, doc_id, attr_name, path_value))
+
+        # Record all referenced paths
+        for attr_name, path_value, doc_id in valid_paths + invalid_paths:
+            referenced_paths.add(path_value)
 
     print(f"\nTotal paths checked: {total_valid_paths + total_invalid_paths}")
     print(f"Number of valid paths: {total_valid_paths}")
@@ -132,6 +174,32 @@ def main():
             print()
     else:
         print("All paths seem valid")
+
+    all_files = list_non_hidden_files(root_folder)
+
+    unreferenced = []
+    for f in all_files:
+        if f not in referenced_paths and not f.startswith("metadata/"):
+            unreferenced.append(f)
+
+    print(f"\nTotal non-hidden files found: {len(all_files)}")
+    print(
+        f"Number of files referenced in metadata: {len(all_files) - len(unreferenced)}"
+    )
+    print(f"Number of files *not* referenced: {len(unreferenced)}")
+
+    if unreferenced:
+        print("\nUnreferenced Files:")
+        for f in sorted(unreferenced):
+            print(f"  {f}")
+    else:
+        print("All non-hidden files are referenced in the metadata!")
+
+    print("\nMetadata Summary:")
+    print(f"  Types: {', '.join(sorted(types_set))}")
+    print(f"  Subtypes: {', '.join(sorted(subtypes_set))}")
+    print(f"  Models: {', '.join(sorted(models_set))}")
+    print(f"  Processing methods: {', '.join(sorted(processing_methods_set))}")
 
 
 if __name__ == "__main__":
