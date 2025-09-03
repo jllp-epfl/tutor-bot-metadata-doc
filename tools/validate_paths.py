@@ -220,7 +220,7 @@ def validate_document_fields(
             )
 
     # when "subtype" is "video_lecture", "path" must end in "json" and "is_video" must be true
-    if doc.get("subtype") == "video_lecture":
+    if doc.get("subtype") == "video_lecture" and not doc.get("is_qa"):  # new
         if "path" in doc and doc["path"] is not None:
             if not doc["path"].endswith(".json"):
                 errors.append(
