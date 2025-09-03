@@ -4,7 +4,16 @@ import argparse
 from pathlib import Path
 from typing import Dict, List, Tuple, Any
 import os
-import re
+from collections import Counter
+from datetime import datetime
+
+
+def _is_ddmmyyyy(s: str) -> bool:
+    try:
+        datetime.strptime(s, "%d/%m/%Y")
+        return True
+    except Exception:
+        return False
 
 
 def list_non_hidden_files(root_folder: Path) -> List[str]:
@@ -174,176 +183,35 @@ def validate_associated_video_lecture(
     return errors
 
 
-def validate_document_fields(
-    doc: Dict[str, Any], root_folder: Path
-) -> List[Tuple[str, str, int]]:
+def extract_paths_from_document(doc: Dict[str, Any]) -> List[Tuple[str, str, int]]:
     """
-    Validate document field values according to business rules.
-    Returns list of tuples: (field_name, error_message, document_id)
+    Extract all path attributes from a document.
+    Returns list of tuples: (attribute_name, path_value, document_id)
     """
-    errors = []
+    paths = []
     doc_id = doc.get("id", "unknown")
 
-    # "week" has to be an int or null
-    if "week" in doc and doc["week"] is not None:
-        if not isinstance(doc["week"], int):
-            errors.append(
-                (
-                    "week",
-                    f"must be an integer or null, got: {type(doc['week']).__name__}",
-                    doc_id,
-                )
-            )
+    # Check main document paths
+    path_attributes = ["path", "srt_path", "pdf_page_video_ts_path"]
 
-    # "number" and "sub_number" has to be a string or null
-    for field in ["number", "sub_number"]:
-        if field in doc and doc[field] is not None:
-            if not isinstance(doc[field], str):
-                errors.append(
-                    (
-                        field,
-                        f"must be a string or null, got: {type(doc[field]).__name__}",
-                        doc_id,
-                    )
-                )
+    for attr in path_attributes:
+        if attr in doc and doc[attr] is not None:
+            paths.append((attr, doc[attr], doc_id))
 
-    # "model" has to be "gemini-2.5-flash", "gemini-2.5-pro" or null
-    if "model" in doc and doc["model"] is not None:
-        valid_models = ["gemini-2.5-flash", "gemini-2.5-pro"]
-        if doc["model"] not in valid_models:
-            errors.append(
-                (
-                    "model",
-                    f"must be one of {valid_models} or null, got: {doc['model']}",
-                    doc_id,
-                )
-            )
-
-    # when "subtype" is "video_lecture", "path" must end in "json" and "is_video" must be true
-    if doc.get("subtype") == "video_lecture" and not doc.get("is_qa"):  # new
-        if "path" in doc and doc["path"] is not None:
-            if not doc["path"].endswith(".json"):
-                errors.append(
-                    (
-                        "path",
-                        "must end with '.json' when subtype is 'video_lecture'",
-                        doc_id,
-                    )
-                )
-        if "is_video" in doc and doc["is_video"] is not True:
-            errors.append(
-                ("is_video", "must be true when subtype is 'video_lecture'", doc_id)
-            )
-
-    # "from" and "until" has to be a string in format "09/09/2025" or null
-    date_pattern = re.compile(r"^\d{2}/\d{2}/\d{4}$")
-    for field in ["from", "until"]:
-        if field in doc and doc[field] is not None:
-            if not isinstance(doc[field], str):
-                errors.append(
-                    (field, "must be a string in format 'DD/MM/YYYY' or null", doc_id)
-                )
-            elif not date_pattern.match(doc[field]):
-                errors.append(
-                    (
-                        field,
-                        f"must be in format 'DD/MM/YYYY', got: {doc[field]}",
-                        doc_id,
-                    )
-                )
-
-    # "tikz" has to be false or null
-    if "tikz" in doc and doc["tikz"] is not None and doc["tikz"] is not False:
-        errors.append(("tikz", f"must be false or null, got: {doc['tikz']}", doc_id))
-
-    # "title" can't have "_" characters
-    if "title" in doc and doc["title"] is not None:
-        if "_" in str(doc["title"]):
-            errors.append(("title", "cannot contain underscore characters", doc_id))
-
-    # if "subtype" is "book_in_bibliography" then "one_chunk_per_page" and "one_chunk_per_doc" has to be false
-    if doc.get("subtype") == "book_in_bibliography":
-        for field in ["one_chunk_per_page", "one_chunk_per_doc"]:
-            if field in doc and doc[field] is not False:
-                errors.append(
-                    (
-                        field,
-                        "must be false when subtype is 'book_in_bibliography'",
-                        doc_id,
-                    )
-                )
-
-    # "processing_method" has to be "gemini", "tesseract", "google" or null
-    if "processing_method" in doc and doc["processing_method"] is not None:
-        valid_methods = ["gemini", "tesseract", "google"]
-        if doc["processing_method"] not in valid_methods:
-            errors.append(
-                (
-                    "processing_method",
-                    f"must be one of {valid_methods} or null, got: {doc['processing_method']}",
-                    doc_id,
-                )
-            )
-
-    # "srt_path" has to be null or be a string that ends in ".srt"
-    if "srt_path" in doc and doc["srt_path"] is not None:
-        if not isinstance(doc["srt_path"], str) or not doc["srt_path"].endswith(".srt"):
-            errors.append(("srt_path", "must be null or end with '.srt'", doc_id))
-
-    # "original_link" has to be null or be a string that contains "mediaspace"
-    if "original_link" in doc and doc["original_link"] is not None:
-        if (
-            not isinstance(doc["original_link"], str)
-            or "mediaspace" not in doc["original_link"]
-        ):
-            errors.append(
-                ("original_link", "must be null or contain 'mediaspace'", doc_id)
-            )
-
-    # if "is_gemini_processed_video" is true then "is_video" has to be true too
-    if doc.get("is_gemini_processed_video") is True:
-        if doc.get("is_video") is not True:
-            errors.append(
-                (
-                    "is_video",
-                    "must be true when is_gemini_processed_video is true",
-                    doc_id,
-                )
-            )
-
-        # NEW RULE: if "is_gemini_processed_video" is true, validate JSON structure
-        if "path" in doc and doc["path"] is not None:
-            json_full_path = root_folder / doc["path"]
-            if json_full_path.exists() and json_full_path.is_file():
-                if not validate_gemini_json_structure(json_full_path):
-                    errors.append(
-                        ("path", "Gemini JSON file has invalid structure", doc_id)
-                    )
-
-    # validate associated_video_lectures structure
+    # Check associated video lectures
     if (
         "associated_video_lectures" in doc
         and doc["associated_video_lectures"] is not None
     ):
-        if not isinstance(doc["associated_video_lectures"], list):
-            errors.append(("associated_video_lectures", "must be a list", doc_id))
-        else:
-            for i, video in enumerate(doc["associated_video_lectures"]):
-                if not isinstance(video, dict):
-                    errors.append(
-                        (
-                            f"associated_video_lectures[{i}]",
-                            "must be a dictionary",
-                            doc_id,
-                        )
+        for i, video in enumerate(doc["associated_video_lectures"]):
+            video_path_attrs = ["path", "srt_path", "pdf_page_video_ts_path"]
+            for attr in video_path_attrs:
+                if attr in video and video[attr] is not None:
+                    paths.append(
+                        (f"associated_video_lectures[{i}].{attr}", video[attr], doc_id)
                     )
-                else:
-                    video_errors = validate_associated_video_lecture(
-                        video, doc_id, i, root_folder
-                    )
-                    errors.extend(video_errors)
 
-    return errors
+    return paths
 
 
 def validate_document_fields(
@@ -408,18 +276,14 @@ def validate_document_fields(
             )
 
     # "from" and "until" has to be a string in format "09/09/2025" or null
-    date_pattern = re.compile(r"^\d{2}/\d{2}/\d{4}$")
     for field in ["from", "until"]:
         if field in doc and doc[field] is not None:
-            if not isinstance(doc[field], str):
-                errors.append(
-                    (field, "must be a string in format 'DD/MM/YYYY' or null", doc_id)
-                )
-            elif not date_pattern.match(doc[field]):
+            val = doc[field]
+            if not isinstance(val, str) or not _is_ddmmyyyy(val):
                 errors.append(
                     (
                         field,
-                        f"must be in format 'DD/MM/YYYY', got: {doc[field]}",
+                        "must be a string in format 'DD/MM/YYYY' or null (and a real date)",
                         doc_id,
                     )
                 )
@@ -462,21 +326,37 @@ def validate_document_fields(
         if not isinstance(doc["srt_path"], str) or not doc["srt_path"].endswith(".srt"):
             errors.append(("srt_path", "must be null or end with '.srt'", doc_id))
 
-    # "original_link" has to be null or be a string that contains "mediaspace"
-    if "original_link" in doc and doc["original_link"] is not None and doc["is_video"]:
-        if not isinstance(doc["original_link"], str) or (
-            "mediaspace" not in doc["original_link"]
-            and "coursera" not in doc["original_link"]
-            and "courseware" not in doc["original_link"]
-            and "edx" not in doc["original_link"]
-        ):
-            errors.append(
-                (
-                    "original_link",
-                    "must be null or contain 'mediaspace' or a MOOC platform",
-                    doc_id,
+    # "original_link" rules
+    if "original_link" in doc and doc["original_link"] is not None:
+        val = doc["original_link"]
+        if not isinstance(val, str):
+            errors.append(("original_link", "must be a string", doc_id))
+        else:
+            # Platform constraint only applies to videos
+            if doc.get("is_video") and (
+                "mediaspace" not in val
+                and "coursera" not in val
+                and "courseware" not in val
+                and "edx" not in val
+            ):
+                errors.append(
+                    (
+                        "original_link",
+                        "must be null or contain 'mediaspace' or a MOOC platform",
+                        doc_id,
+                    )
                 )
-            )
+            # Applies to all: if it contains ".pdf", it must end exactly at ".pdf"
+            if ".pdf" in val:
+                pdf_pos = val.find(".pdf")
+                if pdf_pos != len(val) - 4:
+                    errors.append(
+                        (
+                            "original_link",
+                            "must not contain characters after '.pdf'",
+                            doc_id,
+                        )
+                    )
 
     # if "is_gemini_processed_video" is true then "is_video" has to be true too
     if doc.get("is_gemini_processed_video") is True:
@@ -522,37 +402,6 @@ def validate_document_fields(
                     errors.extend(video_errors)
 
     return errors
-
-
-def extract_paths_from_document(doc: Dict[str, Any]) -> List[Tuple[str, str, int]]:
-    """
-    Extract all path attributes from a document.
-    Returns list of tuples: (attribute_name, path_value, document_id)
-    """
-    paths = []
-    doc_id = doc.get("id", "unknown")
-
-    # Check main document paths
-    path_attributes = ["path", "srt_path", "pdf_page_video_ts_path"]
-
-    for attr in path_attributes:
-        if attr in doc and doc[attr] is not None:
-            paths.append((attr, doc[attr], doc_id))
-
-    # Check associated video lectures
-    if (
-        "associated_video_lectures" in doc
-        and doc["associated_video_lectures"] is not None
-    ):
-        for i, video in enumerate(doc["associated_video_lectures"]):
-            video_path_attrs = ["path", "srt_path", "pdf_page_video_ts_path"]
-            for attr in video_path_attrs:
-                if attr in video and video[attr] is not None:
-                    paths.append(
-                        (f"associated_video_lectures[{i}].{attr}", video[attr], doc_id)
-                    )
-
-    return paths
 
 
 def validate_json_file(
@@ -636,18 +485,20 @@ def main():
 
     metadata_dir = root_folder / "metadata"
 
-    for json_file in os.listdir(metadata_dir):
+    for json_file in sorted(os.listdir(metadata_dir)):
         if not json_file.endswith(".json"):
             continue
 
         json_file_path = metadata_dir / json_file
 
+        per_file_date_counter = Counter()
         try:
             with open(json_file_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
         except Exception:
-            pass
+            data = None
         else:
+            # collect sets for summary (existing behavior)
             for doc in data.get("documents", []):
                 if doc.get("type") is not None:
                     types_set.add(doc["type"])
@@ -657,8 +508,37 @@ def main():
                     models_set.add(doc["model"])
                 if doc.get("processing_method") is not None:
                     processing_methods_set.add(doc["processing_method"])
+                # count 'from' dates if present and well-formed
+                frm = doc.get("from")
+                if isinstance(frm, str) and _is_ddmmyyyy(frm):
+                    per_file_date_counter[frm] += 1
+
+            # check course_info.academic_course
+            ac_year = (
+                data.get("course_info", {}).get("academic_course")
+                if isinstance(data, dict)
+                else None
+            )
+            if ac_year != "2025-2026":
+                all_field_errors.append(
+                    (
+                        json_file,
+                        "course_info",
+                        "academic_course",
+                        f"must be '2025-2026', got: {ac_year}",
+                    )
+                )
+                total_field_errors += 1
 
         print(f"Validating: {json_file_path}")
+        # Print per-file 'from' date counts BEFORE running deep validations (or after—either is fine)
+        print("  'from' date occurrences:")
+        if per_file_date_counter:
+            for d, cnt in sorted(per_file_date_counter.items()):
+                print(f"    {d}: {cnt}")
+        else:
+            print("    (none)")
+
         valid_paths, invalid_paths, field_errors = validate_json_file(
             json_file_path, root_folder
         )
